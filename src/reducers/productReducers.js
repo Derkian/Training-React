@@ -2,7 +2,7 @@ import { PRODUCT_LOADING, PRODUCT_LOADING_SUCESS, PRODUCT_POSTING, PRODUCT_POST_
 import initialState from './initialState';
 
 export default function(state = initialState.products, action){
-    debugger;
+    
     switch (action.type) {
         case PRODUCT_LOADING:
             return Object.assign({}, state , { isLoading : action.payload });            

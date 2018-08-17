@@ -24,8 +24,7 @@ class ProductForm extends React.Component{
         if(nextProps.products.isLoading && !this.isLoading)
             this.isLoading = true;
 
-        if(!nextProps.products.isLoading && this.isLoading){     
-            debugger;       
+        if(!nextProps.products.isLoading && this.isLoading){                 
             this.isLoading = false;
             this.setState({ productsList : nextProps.products.items })
         }
@@ -33,8 +32,7 @@ class ProductForm extends React.Component{
         if(nextProps.products.isPosting && !this.isPosting)
             this.isPosting = true;
 
-        if(!nextProps.products.isPosting && this.isPosting){     
-            debugger;       
+        if(!nextProps.products.isPosting && this.isPosting){                 
             this.isPosting = false;
             this.setState({ productsList : nextProps.products.items })
         }
@@ -53,15 +51,10 @@ class ProductForm extends React.Component{
     }
 
     onClick = () =>{          
-        //push new product      
-        debugger;
-        this.props.productsActions.productPostFetch(this.state.product);
-
-        //this.setState( { productsList : [...this.state.productsList, this.state.product] });
+        //push new product              
+        this.props.productsActions.productPostFetch(this.state.product);        
         //clean object product
-        this.setState( { product : { productName : '', quantity : 0, price : 0 } });
-
-        
+        this.setState( { product : { productName : '', quantity : 0, price : 0 } });        
     }
 
     render(){

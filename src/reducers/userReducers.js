@@ -10,8 +10,7 @@ export default function(state = initialState.users, action) {
     case USERS_FETCH_SUCCESS:
       return Object.assign({}, state, { isLoading: false, items: action.payload  });
     case USERS_POST_SUCCESS:      
-      let obj = Object.assign({}, state, { items: [...state.items, action.payload] }, { isPosting : false}); 
-      return obj;
+      return Object.assign({}, state, { items: [...state.items, action.payload] }, { isPosting : false});       
     default:
       return state;
   }

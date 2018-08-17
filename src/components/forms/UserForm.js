@@ -17,7 +17,7 @@ class UserForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    debugger;
+    
     if(!this.usersLoading && nextProps.users.isLoading)
       this.usersLoading = true;
 
