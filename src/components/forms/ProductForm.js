@@ -12,21 +12,20 @@ class ProductForm extends React.Component{
         }        
     }
 
-
     isLoading = false;
 
-    componentDidMount(){
-        debugger;        
+    componentDidMount(){        
         this.props.productsActions.productFetch();
     }
 
-    shouldComponentUpdate(nextProps){
-        debugger;
+    componentWillReceiveProps(nextProps){         
         if(nextProps.products.isLoading && !this.isLoading)
             this.isLoading = true;
 
-        if(!nextProps.products.isLoading && this.isLoading){
+        if(!nextProps.products.isLoading && this.isLoading){     
+            debugger;       
             this.isLoading = false;
+            this.setState({ productsList : nextProps.products.items })
         }
     }
 
@@ -86,9 +85,10 @@ class ProductForm extends React.Component{
                             </tr>
                         </thead>
                         <tbody>
-                            {
+                            {                                
                                 this.state.productsList.map(item =>{
-                                    return(
+                                    debugger;
+                                    return(                                                                                
                                         <tr>
                                             <td>{item.productName}</td>
                                             <td>{item.quantity}</td>

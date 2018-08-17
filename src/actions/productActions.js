@@ -17,8 +17,7 @@ export const produtoFetchSucess = (productList) =>{
 };
 
 export const productFetch = () =>{
-    return (dispatch) =>{
-        debugger;
+    return (dispatch) =>{        
         dispatch(productLoading(true));
 
         performFetch("products")
