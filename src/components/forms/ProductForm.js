@@ -13,6 +13,8 @@ class ProductForm extends React.Component{
     }
 
     isLoading = false;
+    isPosting = false;
+
 
     componentDidMount(){        
         this.props.productsActions.productFetch();
@@ -25,6 +27,15 @@ class ProductForm extends React.Component{
         if(!nextProps.products.isLoading && this.isLoading){     
             debugger;       
             this.isLoading = false;
+            this.setState({ productsList : nextProps.products.items })
+        }
+
+        if(nextProps.products.isPosting && !this.isPosting)
+            this.isPosting = true;
+
+        if(!nextProps.products.isPosting && this.isPosting){     
+            debugger;       
+            this.isPosting = false;
             this.setState({ productsList : nextProps.products.items })
         }
     }
@@ -43,9 +54,14 @@ class ProductForm extends React.Component{
 
     onClick = () =>{          
         //push new product      
-        this.setState( { productsList : [...this.state.productsList, this.state.product] });
+        debugger;
+        this.props.productsActions.productPostFetch(this.state.product);
+
+        //this.setState( { productsList : [...this.state.productsList, this.state.product] });
         //clean object product
         this.setState( { product : { productName : '', quantity : 0, price : 0 } });
+
+        
     }
 
     render(){
@@ -86,8 +102,7 @@ class ProductForm extends React.Component{
                         </thead>
                         <tbody>
                             {                                
-                                this.state.productsList.map(item =>{
-                                    debugger;
+                                this.state.productsList.map(item =>{                                    
                                     return(                                                                                
                                         <tr>
                                             <td>{item.productName}</td>
