@@ -11,10 +11,6 @@ class App extends React.Component {
     index: 0
   };
 
-  goToUsers = () => {
-    this.props.history.push('/users');
-  };
-
   onClick = () => {
     const bodyRows = this.state.bodyRows;
     this.setState({
@@ -46,13 +42,6 @@ class App extends React.Component {
             headColumns={this.state.headColumns}
             bodyRows={this.state.bodyRows}
           />
-        </div>
-        <div style={{marginTop: '8px'}}>
-          <button
-            onClick={this.goToUsers}
-            style={{height: '30px'}}>
-            Users
-          </button>
         </div>
       </div>
     );

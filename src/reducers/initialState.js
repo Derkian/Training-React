@@ -3,5 +3,10 @@ export default {
     isLoading: false,
     isPosting : false,
     items: []
+  },
+  products : {
+    isLoading : false,
+    isPosting : false,
+    items : []
   }
 };

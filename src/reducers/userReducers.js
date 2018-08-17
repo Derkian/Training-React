@@ -1,8 +1,7 @@
 import { USERS_LOADING, USERS_FETCH_SUCCESS, USERS_POSTING, USERS_POST_SUCCESS } from '../constants/actionTypes';
 import initialState from './initialState';
 
-export default function(state = initialState.users, action) {
-  debugger;
+export default function(state = initialState.users, action) {  
   switch(action.type) {
     case USERS_LOADING:
       return Object.assign({}, state, { isLoading: action.payload  });
