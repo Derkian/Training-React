@@ -17,7 +17,6 @@ export const produtoFetchSucess = (productList) =>{
 };
 
 export const productPosting = (isPosting) =>{
-    debugger;
     return {
         type : PRODUCT_POSTING,
         payload : isPosting
@@ -77,7 +76,7 @@ export const productPostFetch = (objProduct) =>{
 export const productDelete = (productId) =>{
   return (dispatch) => {
 
-    debugger;
+    ;
     dispatch(productDeleting(true));
 
     performFetch(`products/${productId}`, { method : "DELETE" } )

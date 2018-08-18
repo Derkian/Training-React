@@ -38,7 +38,7 @@ class ProductForm extends React.Component{
             this.setState({ productsList : nextProps.products.items })
         }
 
-        debugger;
+        ;
         if(nextProps.products.idDeleting && !this.isDeleting){
           this.isDeleting = true;
         }
@@ -62,7 +62,6 @@ class ProductForm extends React.Component{
     }
 
     onDelete = id =>{
-      debugger;
       this.props.productsActions.productDelete(id);
     }
 

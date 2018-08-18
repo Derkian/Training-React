@@ -16,7 +16,6 @@ class Master extends React.Component {
   }
 
   routeWillChange = (route) => {
-    debugger;
     switch(route.pathname) {
       case "/users":
         this.setState({ pageTitle: "Users" }); break;
@@ -33,16 +32,10 @@ class Master extends React.Component {
         <div
           id="sidebar"
           style={{ width: '100px', backgroundColor: 'lightblue' }} >
-          <div>
-            <nav>
+          <div className="container">
               <Link to="/">Home</Link>
-            </nav>
-            <nav>
               <Link to="/users">Users </Link>
-            </nav>
-            <nav>
               <Link to="/products">Products </Link>
-            </nav>
           </div>
         </div>
         <div

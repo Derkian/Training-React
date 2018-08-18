@@ -15,7 +15,6 @@ export default function(state = initialState.products, action){
         case PRODUCT_DELETE:
           return Object.assign({},state,{idDeleting : true});
         case PRODUCT_DELETE_SUCESS:
-          debugger;
           let productList = [...state.items];
           let positionDeleting = productList.map(product => { return product.id }).indexOf(action.payload.id);
           productList.splice(positionDeleting, 1);
