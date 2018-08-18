@@ -1,4 +1,4 @@
-import { PRODUCT_LOADING, PRODUCT_LOADING_SUCESS, PRODUCT_POSTING, PRODUCT_POST_SUCESS } from "../constants/productTypes";
+import { PRODUCT_LOADING, PRODUCT_LOADING_SUCESS, PRODUCT_POSTING, PRODUCT_POST_SUCESS, PRODUCT_DELETE, PRODUCT_DELETE_SUCESS } from "../constants/productTypes";
 import { performFetch } from "../constants/apiBase";
 
 
@@ -31,8 +31,22 @@ export const produtoPostSucess = (product) =>{
     };
 };
 
+export const productDeleting = (isDeleting) =>{
+  return {
+    type : PRODUCT_DELETE,
+    payload : isDeleting
+  }
+}
+
+export const productDeleteSucess = (product) =>{
+  return {
+    type : PRODUCT_DELETE_SUCESS,
+    payload : product
+  }
+}
+
 export const productFetch = () =>{
-    return (dispatch) =>{        
+    return (dispatch) =>{
         dispatch(productLoading(true));
 
         performFetch("products")
@@ -46,16 +60,34 @@ export const productFetch = () =>{
 }
 
 export const productPostFetch = (objProduct) =>{
-    return (dispatch) =>{                
+    return (dispatch) =>{
         dispatch(productPosting(true));
 
         performFetch("products", { method : "POST", body : JSON.stringify( objProduct ) } )
-            .then(product =>{                
+            .then(product =>{
                 dispatch(produtoPostSucess(product));
             })
-            .catch(error => {                
+            .catch(error => {
                 console.log(error);
             });
     }
 }
+
+
+export const productDelete = (productId) =>{
+  return (dispatch) => {
+
+    debugger;
+    dispatch(productDeleting(true));
+
+    performFetch(`products/${productId}`, { method : "DELETE" } )
+    .then(product =>{
+        dispatch(productDeleteSucess(product));
+    })
+    .catch(error => {
+        console.log(error);
+    });
+  }
+}
+
 

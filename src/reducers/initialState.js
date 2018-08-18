@@ -7,6 +7,7 @@ export default {
   products : {
     isLoading : false,
     isPosting : false,
+    idDeleting : false,
     items : []
   }
 };

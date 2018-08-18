@@ -8,23 +8,23 @@ class ProductForm extends React.Component{
         product : {
             productName : '',
             quantity : 0,
-            price : 0            
-        }        
+            price : 0
+        }
     }
 
     isLoading = false;
     isPosting = false;
 
 
-    componentDidMount(){        
+    componentDidMount(){
         this.props.productsActions.productFetch();
     }
 
-    componentWillReceiveProps(nextProps){         
+    componentWillReceiveProps(nextProps){
         if(nextProps.products.isLoading && !this.isLoading)
             this.isLoading = true;
 
-        if(!nextProps.products.isLoading && this.isLoading){                 
+        if(!nextProps.products.isLoading && this.isLoading){
             this.isLoading = false;
             this.setState({ productsList : nextProps.products.items })
         }
@@ -32,29 +32,21 @@ class ProductForm extends React.Component{
         if(nextProps.products.isPosting && !this.isPosting)
             this.isPosting = true;
 
-        if(!nextProps.products.isPosting && this.isPosting){                 
+        if(!nextProps.products.isPosting && this.isPosting){
             this.isPosting = false;
             this.setState({ productsList : nextProps.products.items })
         }
     }
 
-    onChangeName = event => {        
-        this.setState( { product : Object.assign({},this.state.product, {productName : event.target.value}) } );
+    onChange = propertyName => event =>{
+      this.setState( { product : Object.assign({},this.state.product, {[propertyName] : event.target.value}) } );
     }
 
-    onChangeQuantity = event => {        
-        this.setState( { product : Object.assign({},this.state.product, {quantity : event.target.value}) } );
-    }
-
-    onChangePrice = event => {        
-        this.setState( { product : Object.assign({},this.state.product, {price : event.target.value}) } );
-    }
-
-    onClick = () =>{          
-        //push new product              
-        this.props.productsActions.productPostFetch(this.state.product);        
+    onClick = () => {
+        //push new product
+        this.props.productsActions.productPostFetch(this.state.product);
         //clean object product
-        this.setState( { product : { productName : '', quantity : 0, price : 0 } });        
+        this.setState( { product : { productName : '', quantity : 0, price : 0 } });
     }
 
     render(){
@@ -64,24 +56,24 @@ class ProductForm extends React.Component{
                     <InputCustom
                         label = {"Name : "}
                         inputCustomValue = {this.state.product.productName}
-                        inputCustomOnChange = {this.onChangeName}
-                    />                    
+                        inputCustomOnChange = {this.onChange("productName")}
+                    />
                 </div>
                 <div>
                     <InputCustom
                         label = {"Quantity : "}
                         inputCustomValue = {this.state.product.quantity}
-                        inputCustomOnChange = {this.onChangeQuantity}
-                    />                    
+                        inputCustomOnChange = {this.onChange("quantity")}
+                    />
                 </div>
                 <div>
                     <InputCustom
                         label = {"Price : "}
                         inputCustomValue = {this.state.product.price}
-                        inputCustomOnChange = {this.onChangePrice}
-                    />                    
-                </div>     
-                <div>           
+                        inputCustomOnChange = {this.onChange("price")}
+                    />
+                </div>
+                <div>
                     <button onClick={this.onClick}>Add Product</button>
                 </div>
                 <div>
@@ -94,9 +86,9 @@ class ProductForm extends React.Component{
                             </tr>
                         </thead>
                         <tbody>
-                            {                                
-                                this.state.productsList.map(item =>{                                    
-                                    return(                                                                                
+                            {
+                                this.state.productsList.map(item =>{
+                                    return(
                                         <tr>
                                             <td>{item.productName}</td>
                                             <td>{item.quantity}</td>
@@ -107,8 +99,8 @@ class ProductForm extends React.Component{
                             }
                         </tbody>
                     </table>
-                </div>                                    
-            </div>                        
+                </div>
+            </div>
         );
     }
 }
