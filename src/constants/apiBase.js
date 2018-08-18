@@ -7,7 +7,7 @@ export const API_BASE_ADDRESS = "https://5b7488dda583740014190957.mockapi.io/rea
 //Items:id
 //http://5b7488dda583740014190957.mockapi.io/reacting/items/{id}
 export function performFetch(url, init) {
-  let objInit = Object.assign({},{ headers: new Headers({'Content-Type': 'application/json'}) } , init)
+  let objInit = Object.assign({},{ headers: new Headers({'Content-Type': 'application/json'}) } , init);
   return fetch(`${API_BASE_ADDRESS}${url}`, objInit)
       .then((response) => {
         if(!response.ok) {

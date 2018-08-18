@@ -34,15 +34,15 @@ export const productDeleting = (isDeleting) =>{
   return {
     type : PRODUCT_DELETE,
     payload : isDeleting
-  }
-}
+  };
+};
 
 export const productDeleteSucess = (product) =>{
   return {
     type : PRODUCT_DELETE_SUCESS,
     payload : product
-  }
-}
+  };
+};
 
 export const productFetch = () =>{
     return (dispatch) =>{
@@ -51,12 +51,9 @@ export const productFetch = () =>{
         performFetch("products")
             .then(products =>{
                 dispatch(produtoFetchSucess(products));
-            })
-            .catch(error => {
-                console.log(error);
             });
-    }
-}
+    };
+};
 
 export const productPostFetch = (objProduct) =>{
     return (dispatch) =>{
@@ -65,28 +62,20 @@ export const productPostFetch = (objProduct) =>{
         performFetch("products", { method : "POST", body : JSON.stringify( objProduct ) } )
             .then(product =>{
                 dispatch(produtoPostSucess(product));
-            })
-            .catch(error => {
-                console.log(error);
             });
-    }
-}
-
+    };
+};
 
 export const productDelete = (productId) =>{
   return (dispatch) => {
 
-    ;
     dispatch(productDeleting(true));
 
     performFetch(`products/${productId}`, { method : "DELETE" } )
     .then(product =>{
         dispatch(productDeleteSucess(product));
-    })
-    .catch(error => {
-        console.log(error);
     });
-  }
-}
+  };
+};
 
 

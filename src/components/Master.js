@@ -55,7 +55,7 @@ class Master extends React.Component {
             />
             <Route
               path = "/products"
-              render = { () => <ProductPage />
+              render = {() => <ProductPage />
               }
             />
           </Switch>

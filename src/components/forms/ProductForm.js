@@ -1,5 +1,6 @@
 import React from 'react';
 import InputCustom from '../common/InputCustom';
+import PropTypes from 'prop-types';
 
 class ProductForm extends React.Component{
 
@@ -12,11 +13,6 @@ class ProductForm extends React.Component{
         }
     }
 
-    isLoading = false;
-    isPosting = false;
-    isDeleting = false;
-
-
     componentDidMount(){
         this.props.productsActions.productFetch();
     }
@@ -27,7 +23,7 @@ class ProductForm extends React.Component{
 
         if(!nextProps.products.isLoading && this.isLoading){
             this.isLoading = false;
-            this.setState({ productsList : nextProps.products.items })
+            this.setState({ productsList : nextProps.products.items });
         }
 
         if(nextProps.products.isPosting && !this.isPosting)
@@ -35,10 +31,9 @@ class ProductForm extends React.Component{
 
         if(!nextProps.products.isPosting && this.isPosting){
             this.isPosting = false;
-            this.setState({ productsList : nextProps.products.items })
+            this.setState({ productsList : nextProps.products.items });
         }
 
-        ;
         if(nextProps.products.idDeleting && !this.isDeleting){
           this.isDeleting = true;
         }
@@ -47,8 +42,11 @@ class ProductForm extends React.Component{
           this.isDeleting = false;
           this.setState({ productsList : nextProps.products.items });
         }
-
     }
+
+    isLoading = false;
+    isPosting = false;
+    isDeleting = false;
 
     onChange = propertyName => event =>{
       this.setState( { product : Object.assign({},this.state.product, {[propertyName] : event.target.value}) } );
@@ -106,7 +104,7 @@ class ProductForm extends React.Component{
                             {
                                 this.state.productsList.map(item =>{
                                     return(
-                                        <tr>
+                                        <tr key={item.id}>
                                             <td>{item.productName}</td>
                                             <td>{item.quantity}</td>
                                             <td>{item.price}</td>
@@ -122,5 +120,10 @@ class ProductForm extends React.Component{
         );
     }
 }
+
+ProductForm.propTypes = {
+    productsActions : PropTypes.object,
+    products : PropTypes.object
+};
 
 export default ProductForm;

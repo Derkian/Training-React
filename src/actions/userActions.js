@@ -36,9 +36,6 @@ export function fetchUsersThunk () {
     performFetch('items', { method: 'GET' })
       .then(result => {
         dispatch(usersFetchSuccess(result));
-      })
-      .catch(error => {
-        console.log(error);
       });
   };
 }
@@ -50,9 +47,6 @@ export function postUsersThunk(userObject) {
     performFetch('items', { method: 'POST' , body : JSON.stringify( userObject ) })
       .then(item => {
         dispatch(usersPostSuccess(item));
-      })
-      .catch(error => {
-        console.log(error);
       });
   };
 }

@@ -1,4 +1,10 @@
-import { PRODUCT_LOADING, PRODUCT_LOADING_SUCESS, PRODUCT_POSTING, PRODUCT_POST_SUCESS, PRODUCT_DELETE, PRODUCT_DELETE_SUCESS } from "../constants/productTypes";
+import { PRODUCT_LOADING,
+         PRODUCT_LOADING_SUCESS, 
+         PRODUCT_POSTING,
+         PRODUCT_POST_SUCESS,
+         PRODUCT_DELETE,
+         PRODUCT_DELETE_SUCESS } from "../constants/productTypes";
+
 import initialState from './initialState';
 
 export default function(state = initialState.products, action){
@@ -14,11 +20,12 @@ export default function(state = initialState.products, action){
             return Object.assign({}, { items : [...state.items, action.payload] }, {isPosting : false});
         case PRODUCT_DELETE:
           return Object.assign({},state,{idDeleting : true});
-        case PRODUCT_DELETE_SUCESS:
+        case PRODUCT_DELETE_SUCESS: {
           let productList = [...state.items];
-          let positionDeleting = productList.map(product => { return product.id }).indexOf(action.payload.id);
+          let positionDeleting = productList.map(product => { return product.id; }).indexOf(action.payload.id);
           productList.splice(positionDeleting, 1);
           return Object.assign({}, state , { items : productList }, { idDeleting : false });
+        }
         default:
             return state;
     }

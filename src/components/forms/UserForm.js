@@ -1,16 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import InputCustom from '../common/InputCustom';
-import TableCustom from '../common/TableCustom';
+import PropTypes from 'prop-types';
 
 class UserForm extends React.Component {
   state = {
     items: [],
     inputValue : ''
-  };
-
-  usersLoading = false;
-  userPosting = false;
+  };  
 
   componentDidMount() {
     this.props.userActions.fetchUsersThunk();
@@ -34,6 +31,9 @@ class UserForm extends React.Component {
       this.setState({items : nextProps.users.items});
     }
   }
+
+  usersLoading = false;
+  userPosting = false;
 
   onClick = () => {    
     this.props.userActions.postUsersThunk({"name" : this.state.inputValue});
@@ -66,10 +66,10 @@ class UserForm extends React.Component {
             <tbody>
               {this.state.items.map(item => {
                 return (
-                  <tr>
+                  <tr key={item.id} >
                     <td>{item.id}</td>
                     <td>{item.name}</td>
-                  </tr>)
+                  </tr>);
               })
               }
             </tbody>
@@ -84,5 +84,10 @@ class UserForm extends React.Component {
     );
   }
 }
+
+UserForm.propTypes = {
+  users : PropTypes.object,
+  userActions : PropTypes.object
+};
 
 export default UserForm;
