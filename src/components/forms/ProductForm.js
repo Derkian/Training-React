@@ -14,6 +14,7 @@ class ProductForm extends React.Component{
 
     isLoading = false;
     isPosting = false;
+    isDeleting = false;
 
 
     componentDidMount(){
@@ -36,6 +37,17 @@ class ProductForm extends React.Component{
             this.isPosting = false;
             this.setState({ productsList : nextProps.products.items })
         }
+
+        debugger;
+        if(nextProps.products.idDeleting && !this.isDeleting){
+          this.isDeleting = true;
+        }
+
+        if(!nextProps.products.idDeleting && this.isDeleting){
+          this.isDeleting = false;
+          this.setState({ productsList : nextProps.products.items });
+        }
+
     }
 
     onChange = propertyName => event =>{
@@ -47,6 +59,11 @@ class ProductForm extends React.Component{
         this.props.productsActions.productPostFetch(this.state.product);
         //clean object product
         this.setState( { product : { productName : '', quantity : 0, price : 0 } });
+    }
+
+    onDelete = id =>{
+      debugger;
+      this.props.productsActions.productDelete(id);
     }
 
     render(){
@@ -83,6 +100,7 @@ class ProductForm extends React.Component{
                                 <th>Name</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
+                                <th>Ação</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,6 +111,7 @@ class ProductForm extends React.Component{
                                             <td>{item.productName}</td>
                                             <td>{item.quantity}</td>
                                             <td>{item.price}</td>
+                                            <td><button onClick={() => this.onDelete(item.id)} >Excluir</button></td>
                                         </tr>
                                     );
                                 })
