@@ -12,15 +12,15 @@ class TableRowCustom extends React.Component {
     return this.props.columns.length !== nextProps.columns.length;
   }
 
-  render() {
+  render() {    
     return (
       <tr>
-        {
-          this.props.columns.map((item, i) => {
+        {          
+          Object.values(this.props.columns).map((item, i) => {            
             return (
               <TableElementCustom key={i} itemName={item}/>
             );
-          })
+          })          
         }
       </tr>
     );

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import InputCustom from '../common/InputCustom';
 import PropTypes from 'prop-types';
+import TableCustom from '../common/TableCustom';
 
 class UserForm extends React.Component {
   state = {
@@ -56,7 +57,11 @@ class UserForm extends React.Component {
           <button onClick={this.onClick}>Add User</button>
         </div>
         <div>
-          <table>
+          <TableCustom
+            headColumns = {[ {name : "Id" },{name : "Created At" },{name : "Name" },{name : "Avatar"} ]}
+            bodyRows = {this.state.items}
+          />
+          {/* <table>
             <thead>
               <tr>
                 <th>Id</th>
@@ -73,7 +78,7 @@ class UserForm extends React.Component {
               })
               }
             </tbody>
-          </table>
+          </table> */}
         </div>
         <div>
           <Link to="/">

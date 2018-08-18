@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 /**
  * Custom demo table
  * @param {array: { name: "" }} headColumns - Names of the columns
- * @param {array: { columns: [] }} bodyRows - Items array
+ * @param {array: { Objects }} bodyRows - Items array
  */
 class TableCustom extends React.Component {
   render() {
@@ -24,11 +24,11 @@ class TableCustom extends React.Component {
         </thead>
         <tbody>
           {
-            this.props.bodyRows !== undefined && this.props.bodyRows.map((bodyRow, i) => {
-              return (
+            this.props.bodyRows !== undefined && this.props.bodyRows.map((bodyRow, i) => {              
+              return (                
                 <TableRowCustom
                   key={i}
-                  columns={bodyRow.columns}
+                  columns={bodyRow}
                 />
               );
             })

@@ -1,6 +1,7 @@
 import React from 'react';
 import InputCustom from '../common/InputCustom';
 import PropTypes from 'prop-types';
+import TableCustom from '../common/TableCustom';
 
 class ProductForm extends React.Component{
 
@@ -52,10 +53,8 @@ class ProductForm extends React.Component{
       this.setState( { product : Object.assign({},this.state.product, {[propertyName] : event.target.value}) } );
     }
 
-    onClick = () => {
-        //push new product
-        this.props.productsActions.productPostFetch(this.state.product);
-        //clean object product
+    onClick = () => {        
+        this.props.productsActions.productPostFetch(this.state.product);        
         this.setState( { product : { productName : '', quantity : 0, price : 0 } });
     }
 
@@ -91,7 +90,17 @@ class ProductForm extends React.Component{
                     <button onClick={this.onClick}>Add Product</button>
                 </div>
                 <div>
-                    <table>
+                    <TableCustom
+                         headColumns = {[
+                                            {name : "Id"},
+                                            {name : "Name"}, 
+                                            {name : "Quantity"}, 
+                                            {name : "Price"}
+                                        ]}
+                         bodyRows = {this.state.productsList}                        
+                    />
+
+                    {/* <table>
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -114,7 +123,7 @@ class ProductForm extends React.Component{
                                 })
                             }
                         </tbody>
-                    </table>
+                    </table> */}
                 </div>
             </div>
         );
